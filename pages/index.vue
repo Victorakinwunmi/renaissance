@@ -18,7 +18,7 @@
               <h1 class="text-white text-sm">User does not exist</h1>
             </div>
         </div>
-        <form @submit.prevent="adminAunthetication" v-show="login_type === true" class="w-full px-4 shadow-2xl rounded-2xl lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
+        <form @submit.prevent="adminAunthetication" v-show="login_type === true" class="w-full p-4 shadow-2xl rounded-2xl lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
             <img :src="require('@/assets/icons/profile.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
                 <div class="flex justify-center gap-6 w-full mb-6">
@@ -42,8 +42,8 @@
                 </div>
             </div>
         </form>
-        <div v-show="login_type === false" class="w-full shadow-2xl rounded-2xl px-4 lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
-            <img :src="require('@/assets/icons/profile.png')" class="w-16 mx-auto mb-2">
+        <div v-show="login_type === false" class="w-full shadow-2xl rounded-2xl p-4 lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
+            <img :src="require('@/assets/icons/staff.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
                 <div class="flex justify-center gap-6 w-full mb-6">
                     <button class="text-xl uppercase text-black font-bold"  @click="toggleFunctionii()">Admin</button>
