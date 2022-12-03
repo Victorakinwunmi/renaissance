@@ -7,7 +7,7 @@
        </div>
      </div>
     </div>
-    <div class="w-full px-4 lg:w-5/12 lg:p-0">
+    <div class="w-full lg:w-5/12 lg:p-0">
         <div :class="wrong_password? 'block':'hidden'">
             <div class="bg-red-500 p-2  mb-4 text-center">
               <h1 class="text-white text-sm">User password is incorrect</h1>
@@ -18,7 +18,7 @@
               <h1 class="text-white text-sm">User does not exist</h1>
             </div>
         </div>
-        <form @submit.prevent="adminAunthetication" v-show="login_type === true" class="w-full  shadow-2xl rounded-2xl md:p-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
+        <form @submit.prevent="adminAunthetication" v-show="login_type === true" class="w-full px-4 shadow-2xl rounded-2xl lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
             <img :src="require('@/assets/icons/profile.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
                 <div class="flex justify-center gap-6 w-full mb-6">
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </form>
-        <div v-show="login_type === false" class="w-full shadow-2xl rounded-2xl md:p-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
+        <div v-show="login_type === false" class="w-full shadow-2xl rounded-2xl px-4 lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
             <img :src="require('@/assets/icons/profile.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
                 <div class="flex justify-center gap-6 w-full mb-6">
@@ -113,7 +113,7 @@ export default {
     adminValidation() {
         clearTimeout(this.dLoad())
         let adminAccount = {
-            id_no: "08104782750",
+            id_no: "0001",
             email: "adexvictor94@gmail.com",
             password: "victor",
         };
