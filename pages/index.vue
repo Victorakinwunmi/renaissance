@@ -8,17 +8,27 @@
      </div>
     </div>
     <div class="w-full px-4 lg:w-5/12 lg:p-0">
-        <div v-show="login_type === true" class="w-full  shadow-2xl rounded-2xl md:p-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
+        <div :class="wrong_password? 'block':'hidden'">
+            <div class="bg-red-500 p-2  mb-4 text-center">
+              <h1 class="text-white text-sm">User password is incorrect</h1>
+            </div>
+        </div>
+        <div :class="not_exist? 'block':'hidden'">
+            <div class="bg-red-500 p-2  mb-4 text-center">
+              <h1 class="text-white text-sm">User does not exist</h1>
+            </div>
+        </div>
+        <form @submit.prevent="adminAunthetication" v-show="login_type === true" class="w-full  shadow-2xl rounded-2xl md:p-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
             <img :src="require('@/assets/icons/profile.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
                 <div class="flex justify-center gap-6 w-full mb-6">
                     <button class="text-xl border-b-2 border-blue-400 p-2 uppercase text-black font-bold">Admin</button>
                     <button class="text-xl uppercase font-bold" @click="toggleFunction()">Staff</button>
                 </div>
-                <input type="text" Placeholder="Admin Id No" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
-                <input type="email" Placeholder="Email" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
-                <div class="flex items-center justify-between border-blue-300 border px-2 py-4 rounded-lg mb-4 ">
-                <input :type="show_password?'text':'password'" Placeholder="Password" class="block w-full mx-auto outline-none">
+                <input type="text" v-model="admin_id" Placeholder="Id No" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
+                <input type="email" v-model="admin_email" Placeholder="Email" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
+                <div class="flex items-center justify-between border-blue-300 border px-2 py-4 rounded-lg mb-4">
+                <input v-model="admin_password" :type="show_password?'text':'password'" Placeholder="Password" class="block w-full mx-auto outline-none">
                 <PasswordIcons @togglePassword="showPassword" />
                 </div>
                 <div class="flex items-center gap-2 mb-6">
@@ -26,10 +36,12 @@
                     <div class="text-base font-semibold">Remember to keep me logged in</div>
                 </div>
                 <div class="w-full flex justify-center mt-8 ">
-                 <button class="px-6 py-2 duration-500 ease-in-out hover:bg-blue-900 hover:border-blue-900 border border-blue-400 bg-blue-400 text-white font-bold text-black rounded-md">Login</button>
+                  <LoadingButton :loadingText="'Auntheticating..'" :loading="loading_state">
+                    <template #login>LOGIN</template>
+                  </LoadingButton>
                 </div>
             </div>
-        </div>
+        </form>
         <div v-show="login_type === false" class="w-full shadow-2xl rounded-2xl md:p-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
             <img :src="require('@/assets/icons/profile.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
@@ -37,9 +49,9 @@
                     <button class="text-xl uppercase text-black font-bold"  @click="toggleFunctionii()">Admin</button>
                     <button class="text-xl border-b-2 border-blue-400 p-2 uppercase text-black font-bold">Staff</button>
                 </div>
-                <input type="email" Placeholder="Email" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
+                <input type="email" v-model="staff_email" Placeholder="Email" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
                 <div class="flex items-center justify-between border-blue-300 border px-2 py-4 rounded-lg mb-4 ">
-                <input :type="show_password?'text':'password'" Placeholder="Password" class="block w-full mx-auto outline-none">
+                <input v-model="staff_password" :type="show_password?'text':'password'" Placeholder="Password" class="block w-full mx-auto outline-none">
                 <PasswordIcons @togglePassword="showPassword" />
                 </div>
                 <div class="flex items-center gap-2 mb-6">
@@ -47,8 +59,11 @@
                     <div class="text-base font-semibold">Remember to keep me logged in</div>
                 </div>
                 <div class="w-full flex justify-center mt-8 ">
-                 <button class="px-6 py-2 duration-500 ease-in-out hover:bg-blue-900 hover:border-blue-900 border border-blue-400 bg-blue-400 text-white font-bold text-black rounded-md">Login</button>
+                  <LoadingButton :loadingText="'Auntheticating..'" :loading="loading_state">
+                    <template #login>LOGIN</template>
+                  </LoadingButton>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -61,9 +76,21 @@ export default {
     return{
         show_password:false,
         login_type:true,
+        admin_id:"",
+        admin_email:"",
+        admin_password:"",
+        staff_email:"",
+        staff_password:"",
+        loading_state: false,
+        wrong_password:false,
+        not_exist:false,
     }
  },
  methods:{
+    adminAunthetication(){
+      this.Load()
+      setTimeout(this.adminValidation,3000)
+    },
     showPassword(){
         this.show_password = !this.show_password
       },
@@ -83,6 +110,43 @@ export default {
           return
         }
     },
+    adminValidation() {
+        clearTimeout(this.dLoad())
+        let adminAccount = {
+            id_no: "08104782750",
+            email: "adexvictor94@gmail.com",
+            password: "victor",
+        };
+        
+        if(this.admin_email =="" || this.admin_password =="" || this.admin_id == ""){
+            return
+        }else{
+            
+        }
+
+        if (this.admin_email == adminAccount.email && this.admin_id == adminAccount.id_no){
+                if (adminAccount.password == this.admin_password) {
+                   window.location.replace('admindashboard')
+                } else {
+                  this.wrong_password=!this.wrong_password
+                }
+            }else {
+               this.not_exist=!this.not_exist
+            }
+    
+    },
+    Load(){
+        if(this.admin_email =="" && this.admin_password ==""){
+        return
+        }else{
+        this.loading_state=!this.loading_state
+        }
+    },
+
+    dLoad(){
+        this.loading_state=false
+    },
+    
 
  }
 };
