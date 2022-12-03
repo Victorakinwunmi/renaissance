@@ -15,9 +15,9 @@
                     <button class="text-xl border-b-2 border-blue-400 p-2 uppercase text-black font-bold">Admin</button>
                     <button class="text-xl uppercase font-bold" @click="toggleFunction()">Staff</button>
                 </div>
-                <input type="text" Placeholder="Admin Id No" class="block mx-auto w-full border-blue-500 border rounded-lg mb-4 px-2 py-4 outline-none">
-                <input type="email" Placeholder="Email" class="block mx-auto w-full border-blue-500 border rounded-lg mb-4 px-2 py-4 outline-none">
-                <div class="flex items-center justify-between border-blue-500 border px-2 py-4 rounded-lg mb-4 ">
+                <input type="text" Placeholder="Admin Id No" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
+                <input type="email" Placeholder="Email" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
+                <div class="flex items-center justify-between border-blue-300 border px-2 py-4 rounded-lg mb-4 ">
                 <input :type="show_password?'text':'password'" Placeholder="Password" class="block w-full mx-auto outline-none">
                 <PasswordIcons @togglePassword="showPassword" />
                 </div>
@@ -37,8 +37,8 @@
                     <button class="text-xl uppercase text-black font-bold"  @click="toggleFunctionii()">Admin</button>
                     <button class="text-xl border-b-2 border-blue-400 p-2 uppercase text-black font-bold">Staff</button>
                 </div>
-                <input type="email" Placeholder="Email" class="block mx-auto w-full border-blue-500 border rounded-lg mb-4 px-2 py-4 outline-none">
-                <div class="flex items-center justify-between border-blue-500 border px-2 py-4 rounded-lg mb-4 ">
+                <input type="email" Placeholder="Email" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
+                <div class="flex items-center justify-between border-blue-300 border px-2 py-4 rounded-lg mb-4 ">
                 <input :type="show_password?'text':'password'" Placeholder="Password" class="block w-full mx-auto outline-none">
                 <PasswordIcons @togglePassword="showPassword" />
                 </div>
