@@ -20,6 +20,12 @@
               <img :src="require('@/assets/icons/close.png')" class="w-6 cursor-pointer" @click="closeNotExist()">
             </div>
         </div>
+        <div :class="not_available? 'block':'hidden'">
+            <div class="bg-red-500 p-2 w-full mb-4 flex items-center justify-between text-center">
+              <h1 class="text-white text-sm w-full">Staff dashboard is currently not available</h1>
+              <img :src="require('@/assets/icons/close.png')" class="w-6 cursor-pointer" @click="closeNa()">
+            </div>
+        </div>
         <form @submit.prevent="adminAunthetication" v-show="login_type === true" class="w-full p-4 shadow-2xl rounded-2xl lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
             <img :src="require('@/assets/icons/profile.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
@@ -27,7 +33,7 @@
                     <button class="text-xl border-b-2 border-blue-400 p-2 uppercase text-black font-bold">Admin</button>
                     <button class="text-xl uppercase font-bold" @click="toggleFunction()">Staff</button>
                 </div>
-                <input type="text" v-model="admin_id" Placeholder="Id No" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
+                <input type="number" v-model="admin_id" Placeholder="Id No" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
                 <input type="email" v-model="admin_email" Placeholder="Email" class="block mx-auto w-full border-blue-300 border rounded-lg mb-4 px-2 py-4 outline-none">
                 <div class="flex items-center justify-between border-blue-300 border px-2 py-4 rounded-lg mb-4">
                 <input v-model="admin_password" :type="show_password?'text':'password'" Placeholder="Password" class="block w-full mx-auto outline-none">
@@ -35,7 +41,7 @@
                 </div>
                 <div class="flex items-center gap-2 mb-6">
                     <input type="checkbox" class="cursor-pointer">
-                    <div class="text-base font-semibold">Remember to keep me logged in</div>
+                    <div class="text-base font-semibold">Stay logged in</div>
                 </div>
                 <div class="w-full flex justify-center mt-8 ">
                   <LoadingButton :loadingText="'Auntheticating..'" :loading="loading_state">
@@ -44,7 +50,7 @@
                 </div>
             </div>
         </form>
-        <div v-show="login_type === false" class="w-full shadow-2xl rounded-2xl p-4 lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
+        <form @submit.prevent="staffAunthetication()" v-show="login_type === false" class="w-full shadow-2xl rounded-2xl p-4 lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
             <img :src="require('@/assets/icons/staff.png')" class="w-16 mx-auto mb-2">
             <div class="bg-white px-4 py-10 md:px-8 lg:px-14">
                 <div class="flex justify-center gap-6 w-full mb-6">
@@ -58,16 +64,16 @@
                 </div>
                 <div class="flex items-center gap-2 mb-6">
                     <input type="checkbox" class="cursor-pointer">
-                    <div class="text-base font-semibold">Remember to keep me logged in</div>
+                    <div class="text-base font-semibold">Stay logged in</div>
                 </div>
                 <div class="w-full flex justify-center mt-8 ">
-                  <LoadingButton :loadingText="'Auntheticating..'" :loading="loading_state">
+                  <LoadingButton :loadingText="'Auntheticating..'" :loading=" staff_loading_state">
                     <template #login>LOGIN</template>
                   </LoadingButton>
                 </div>
                 
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </template>
@@ -84,14 +90,16 @@ export default {
         staff_email:"",
         staff_password:"",
         loading_state: false,
+        staff_loading_state: false,
         wrong_password:false,
         not_exist:false,
+        not_available:false,
     }
  },
  methods:{
     adminAunthetication(){
       this.Load()
-      setTimeout(this.adminValidation,3000)
+      setTimeout(this.adminValidation,2000)
     },
     showPassword(){
         this.show_password = !this.show_password
@@ -154,6 +162,21 @@ export default {
     closeNotExist(){
         this.not_exist=!this.not_exist
     },
+    staffAunthetication(){
+        this.sLoad()
+        this.not_available=!this.not_available
+    },
+     closeNa(){
+        this.not_available=!this.not_available
+    },
+    sLoad(){
+        if(this.staff_email =="" && this.staff_password ==""){
+        return
+        }else{
+        this.staff_loading_state=!this.staff_loading_state
+        }
+    },
+
 
  }
 };

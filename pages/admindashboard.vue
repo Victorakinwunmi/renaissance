@@ -1,18 +1,71 @@
 <template>
-   <div class="flex justify-center w-full h-screen items-center">
-    <div>
-        <h1 class="text-6xl font-bold mb-10">Error 404</h1>
-        <h1 class="text-4xl font-thin">This page is currently not available</h1>
+  <div class="block lg:flex">
+    <div class="">
+      <SidebarContainer>
+        <template #hamburgermenuopen>
+          <button class="">
+            <img
+              :src="require('@/assets/icons/profile.png')"
+              class="w-8 m-0 p-0"
+            />
+          </button>
+        </template>
+
+        <template #hamburgermenuclose>
+          <button class="">
+            <img
+              :src="require('@/assets/icons/profile.png')"
+              class="w-8 m-0 p-0"
+            />
+          </button>
+        </template>
+
+        <template #logo>
+          <SidebarLogo />
+        </template>
+
+        <template #menu>
+          <SidebarMenu path="./admindashboard">
+            <div class="block lg:flex items-center gap-3">
+              <div><SharedIcons icon_name=""/></div>
+              <div>Overview</div>
+            </div>
+          </SidebarMenu>
+
+          <SidebarMenu path="./admindashboard">
+            <div class="block lg:flex items-center gap-3">
+              <div><SharedIcons icon_name=""/></div>
+              <div>Employee</div>
+            </div>
+          </SidebarMenu>
+
+           <SidebarMenu path="./admindashboard">
+            <div class="block lg:flex items-center gap-3">
+              <div><SharedIcons icon_name=""/></div>
+              <div>Task</div>
+            </div>
+          </SidebarMenu>
+
+          <SidebarMenu path="./admindashboard">
+            <div class="block lg:flex items-center gap-3">
+              <div><SharedIcons icon_name=""/></div>
+              <div>Management</div>
+            </div>
+          </SidebarMenu>
+        </template>
+
+        <template #logout>
+          <div><SidebarLogout /></div>
+        </template>
+      </SidebarContainer>
     </div>
-   </div>
+    <div class="w-full"></div>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>
