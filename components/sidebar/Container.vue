@@ -21,7 +21,7 @@
     </div>
 
     <div :class="is_revealed ? 'block ' : 'hidden' " class="h-screen lg:block bg-gray-100 text-center fixed">
-      <div class="h-full flex flex-col gap-16 px-10 bg-gray-100">
+      <div class="h-full flex flex-col justify-between lg:gap-16 px-10 bg-gray-100">
         <div>
           <slot name="logo" />
         </div>
@@ -30,7 +30,7 @@
           <slot name="menu" />
         </div>
 
-        <div class="text-black text-center mt-56">
+        <div class="text-black text-center mb-10 lg:mt-72">
           <slot name="logout" />
         </div>
       </div>

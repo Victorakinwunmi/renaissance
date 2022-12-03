@@ -27,28 +27,28 @@
         <template #menu>
           <SidebarMenu path="./admindashboard">
             <div class="block lg:flex items-center gap-3">
-              <div><SharedIcons icon_name=""/></div>
+              <div><SharedIcons icon_name="icon1"/></div>
               <div>Overview</div>
             </div>
           </SidebarMenu>
 
           <SidebarMenu path="./admindashboard">
             <div class="block lg:flex items-center gap-3">
-              <div><SharedIcons icon_name=""/></div>
+              <div><SharedIcons icon_name="icon2"/></div>
               <div>Employee</div>
             </div>
           </SidebarMenu>
 
            <SidebarMenu path="./admindashboard">
             <div class="block lg:flex items-center gap-3">
-              <div><SharedIcons icon_name=""/></div>
+              <div><SharedIcons icon_name="icon3"/></div>
               <div>Task</div>
             </div>
           </SidebarMenu>
 
           <SidebarMenu path="./admindashboard">
             <div class="block lg:flex items-center gap-3">
-              <div><SharedIcons icon_name=""/></div>
+              <div><SharedIcons icon_name="icon4"/></div>
               <div>Management</div>
             </div>
           </SidebarMenu>

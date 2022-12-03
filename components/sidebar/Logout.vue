@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-10">
+  <div class="">
     <a href="/">
       <img :src="path ? path : require('@/assets/icons/logout.png')" class="mx-auto" />
     </a>
