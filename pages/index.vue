@@ -9,13 +9,15 @@
     </div>
     <div class="w-full lg:w-5/12 lg:p-0">
         <div :class="wrong_password? 'block':'hidden'">
-            <div class="bg-red-500 p-2  mb-4 text-center">
-              <h1 class="text-white text-sm">User password is incorrect</h1>
+            <div class="bg-red-500 p-2 w-full mb-4 flex items-center justify-between text-center">
+              <h1 class="text-white text-sm w-full">User password is incorrect</h1>
+              <img :src="require('@/assets/icons/close.png')" class="w-6 cursor-pointer" @click="closeWrongPass()">
             </div>
         </div>
         <div :class="not_exist? 'block':'hidden'">
-            <div class="bg-red-500 p-2  mb-4 text-center">
-              <h1 class="text-white text-sm">User does not exist</h1>
+            <div class="bg-red-500 p-2 w-full mb-4 flex items-center justify-between text-center">
+              <h1 class="text-white text-sm w-full">User does not exist</h1>
+              <img :src="require('@/assets/icons/close.png')" class="w-6 cursor-pointer" @click="closeNotExist()">
             </div>
         </div>
         <form @submit.prevent="adminAunthetication" v-show="login_type === true" class="w-full p-4 shadow-2xl rounded-2xl lg:px-0 lg:py-10 md:w-4/6 lg:w-5/6 xl:w-4/6 mx-auto">
@@ -146,7 +148,12 @@ export default {
     dLoad(){
         this.loading_state=false
     },
-    
+    closeWrongPass(){
+        this.wrong_password=!this.wrong_password
+    },
+    closeNotExist(){
+        this.not_exist=!this.not_exist
+    },
 
  }
 };
