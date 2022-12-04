@@ -14,7 +14,7 @@
         </button> 
         <div class="">
             <div class="text-black font-bold">Victor Adedapo</div>
-            <div class="text-black font-bold text-gray-400">Admin</div>
+            <div class="font-bold text-gray-400">Admin</div>
         </div>
        </div>
      </div>
