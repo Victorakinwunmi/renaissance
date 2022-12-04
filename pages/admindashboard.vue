@@ -59,7 +59,7 @@
         </template>
       </SidebarContainer>
     </div>
-    <div class="w-full lg:pl-60">
+    <div class="w-full py-20 lg:py-0 lg:pl-60">
         <Header/>
     </div>
   </div>
