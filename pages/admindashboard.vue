@@ -5,8 +5,8 @@
         <template #hamburgermenuopen>
           <button class="">
             <img
-              :src="require('@/assets/icons/profile.png')"
-              class="w-8 m-0 p-0"
+              :src="require('@/assets/icons/openmenu.png')"
+              class="w-10 mx-2 p-0"
             />
           </button>
         </template>
@@ -14,8 +14,8 @@
         <template #hamburgermenuclose>
           <button class="">
             <img
-              :src="require('@/assets/icons/profile.png')"
-              class="w-8 m-0 p-0"
+              :src="require('@/assets/icons/closemenu.png')"
+              class="w-10 m-0 p-0"
             />
           </button>
         </template>
@@ -59,7 +59,9 @@
         </template>
       </SidebarContainer>
     </div>
-    <div class="w-full"></div>
+    <div class="w-full lg:pl-60">
+        <Header/>
+    </div>
   </div>
 </template>
 

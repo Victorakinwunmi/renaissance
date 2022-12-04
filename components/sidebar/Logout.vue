@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <a href="/">
-      <img :src="path ? path : require('@/assets/icons/logout.png')" class="mx-auto" />
+      <img :src="path ? path : require('@/assets/icons/logout.png')" class="mx-auto w-8" />
     </a>
    
   </div>
